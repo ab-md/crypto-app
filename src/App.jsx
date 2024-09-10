@@ -1,5 +1,5 @@
 import HomePage from "./templates/HomePage"
-import Template from "./templates/template"
+import Template from "./templates/Template"
 
 function App() {
 
