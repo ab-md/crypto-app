@@ -13,6 +13,7 @@ const Modal = ({ setModal, coin, currency }) => {
         { id: 3, value: "total_volumes", name: "Total Volumes" },
     ]
     const [type, setType] = useState("prices");
+    console.log(coin.coin);
 
     return (
         <div className="modal">
@@ -25,7 +26,7 @@ const Modal = ({ setModal, coin, currency }) => {
             <div className="chart">
                 <div className="flex items-center mb-8">
                     <img
-                        src={coin.coin.image}
+                        src={coin.coin.image ? coin.coin.image : coin.coin.thumb}
                         alt={coin.coin.name}
                         className="w-10 h-10 mr-2"
                     />
@@ -47,26 +48,30 @@ const Modal = ({ setModal, coin, currency }) => {
                     }
                 </div>
                 <div className="mt-10 mb-2 flex justify-between">
-                    <div>
-                        <span className="chart-info">Prices: </span>
-                        <span>
-                            {currency === "usd" ? "$" : currency === "eur" ? "€" : "¥"}
-                            {coin.coin.current_price}
-                        </span>
-                    </div>
-                    <div>
-                        <span className="chart-info">ATH: </span>
-                        <span>
-                            {currency === "usd" ? "$" : currency === "eur" ? "€" : "¥"}
-                            {coin.coin.ath}
-                        </span>
-                    </div>
-                    <div>
-                        <span className="chart-info">Market Cap: </span>
-                        <span>
-                            {coin.coin.market_cap}
-                        </span>
-                    </div>
+                    {coin.coin.current_price && (
+                        <>
+                            <div>
+                                <span className="chart-info">Prices: </span>
+                                <span>
+                                    {currency === "usd" ? "$" : currency === "eur" ? "€" : "¥"}
+                                    {coin.coin.current_price}
+                                </span>
+                            </div>
+                            <div>
+                                <span className="chart-info">ATH: </span>
+                                <span>
+                                    {currency === "usd" ? "$" : currency === "eur" ? "€" : "¥"}
+                                    {coin.coin.ath}
+                                </span>
+                            </div>
+                            <div>
+                                <span className="chart-info">Market Cap: </span>
+                                <span>
+                                    {coin.coin.market_cap}
+                                </span>
+                            </div>
+                        </> 
+                    )}
                 </div>
             </div>
         </div>
